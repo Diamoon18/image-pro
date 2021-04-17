@@ -84,7 +84,7 @@ There are application states:\
 2.LINEAR,\
 3.POW,\
 4.MIXING\
-```Board model``` - here is the main logic of the game.\
+```Board model``` - here is the main logic of the app.\
 Three main functions:
 ```draw()``` - draws the application on the screen.
 ```java
