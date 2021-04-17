@@ -147,7 +147,7 @@ public void actionPerformed(ActionEvent arg0) {
 		}
 	}
 ```
-```linearModel class``` - logic of the linear processing images. \
+### ```linearModel class``` - logic of the linear processing images.
 Variables:
 ```java
 private static String picturePath ="";
@@ -219,3 +219,88 @@ for(int i = 0; i < height; i++){
  JOptionPane.showMessageDialog(f, "Success!");
 }
 ```
+Methods  light(int valueOfB) and dark(valueOfB) by analogy, but with protection against going out of range.\
+Also value of the b loaded with a slider(user can change value).
+```java
+...
+int b = valueOfB;
+...
+if (x>255) {
+	 x=255;
+}else if (x < 0){
+	 x=0;
+}
+ if (y>255) {
+	 y=255;
+}else if (y < 0){
+	y=0;
+}
+if (z>255) {
+	z=255;
+ }else if (z < 0){
+	z=0;
+ }
+ ...
+```
+``` questionFormModel class implements ChangeListener ``` - window for slider, user selects value of the variable. \
+ChangeListener - track Slider value change.\
+```java
+@Override
+public void stateChanged(ChangeEvent e) {
+	if(stan.equals("dark")) {
+		l.setText("value of -b:" + b.getValue()*(-1));
+	}else if(stan.equals("light")) {
+		l.setText("value of b:" + b.getValue());
+	}
+}
+```
+Main Method ```frame(int start, int end, int interval, String mode)```\
+start - beginning of interval for slider.\
+end - beginning of interval for slider.\
+mode - a short description of the method to distinguish the windows (create egative Slider).\
+For dark mode we should have the negative Slider, that is why I did this.
+```java
+if(stan.equals("dark")) {
+	int st = start;
+	start = end;
+	end = st*(-1);
+}
+```
+Creating a new Slider object.
+```java
+b = new JSlider(start, end, interval);
+questionFormModel qm = new questionFormModel();
+JPanel p = new JPanel();
+```
+Depending on the mode, we set title of the window, print the information(text) in the window.\
+setInverted(true) - reverse the order.\
+```java
+if(stan.equals("dark")) {
+	b.setInverted(true);
+	f.setTitle("Podaj wartosc -b:");
+	l.setText("value of -b:" + b.getValue()*(-1));
+} else if(stan.equals("light")){
+	f.setTitle("Podaj wartosc b:");
+	l.setText("value of b:" + b.getValue());
+} 
+```
+Button to confirm the selected value from Slider.\
+Depending on the mode, invoke the appropriate method.\
+```java
+jb.setBounds(150, 10, 95, 30);
+jb.addActionListener(new ActionListener() {
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(stan.equals("dark")) {
+			valueOfB = b.getValue()*(-1);
+			linearModel.dark(valueOfB);
+			f.dispose();
+		} else if(stan.equals("light")){
+			valueOfB = b.getValue();
+			linearModel.light(valueOfB);
+			f.dispose();
+		}
+	}
+});
+```
+### ```powModel class``` - logic of the power processing images.
