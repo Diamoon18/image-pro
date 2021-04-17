@@ -78,3 +78,72 @@ public void mouseReleased(MouseEvent arg0) {
 }
 ```
 ### 2) Model
+```Board enum``` - for easy application development.\
+There are application states:\
+1.MENU,
+2.LINEAR,
+3.POW,
+4.MIXING
+```Board model``` - here is the main logic of the game.\
+Three main functions:
+```draw()``` - draws the application on the screen.
+```java
+private void draw() {
+	Graphics g2 = this.getGraphics();
+	g2.drawImage(image,0,0,null);
+	g2.dispose();
+}
+```
+```pasteButton()``` - checking which button the user pressed.\
+Then if the coordinate of the mouse is on the button, changing the color and text of the button.\
+If we press the button, then the state changes in this case to Linear.\
+If the coordinate of the mouse is not on the button, then don't change the labels and colors of the buttons.
+```java
+private void pasteButton(Button e) {
+	if (mouseX > e.getX() && mouseX < e.getX()+e.getW() &&
+		mouseY > e.getY() && mouseY < e.getY()+e.getH()) {
+			if(e.equals(menu.menuButtons[0])) {
+				e.color1 = color_change;
+				e.s = "Liniowa";
+				if (menuView.click) {
+					state = BoardEnum.LINEAR;
+					menuView.click = false;
+				}
+			}
+			if(e.equals(menu.menuButtons[1])) {
+				e.color1 = color_change;
+				e.s = "Potegowy";
+				if (menuView.click) {
+					state = BoardEnum.POW;
+					menuView.click = false;
+				}
+			}
+                        ...
+                        else {
+			if(e.equals(menu.menuButtons[0])) {e.color1 = color_butt; e.s = "Linear";}
+			if(e.equals(menu.menuButtons[1])) {e.color1 = color_butt; e.s = "Pow";}
+			if(e.equals(menu.menuButtons[2])) {e.color1 = color_butt; e.s = "Blend";}
+			if(e.equals(menu.menuButtons[3])) {e.color1 = color_butt;e.s = "Exit";}
+			for(int i = 0; i < line.linearButtons.length; i++) {
+				if(e.equals(line.linearButtons[i])) {e.color1 = color_butt;}
+                        }
+}
+```
+Depending on the state of the application, it call the necessary functions, and draw this state.
+```java
+public void actionPerformed(ActionEvent arg0) {
+	if (state.equals(BoardEnum.MENU)){
+		menu.draw(g);
+		draw();
+		for(Button i:menu.menuButtons) {
+			pasteButton(i);
+		}
+	}
+        if (state.equals(BoardEnum.LINEAR)){
+		line.draw(g);
+		draw();
+		for(Button i:line.linearButtons) {
+			pasteButton(i);
+		}
+	}
+```
