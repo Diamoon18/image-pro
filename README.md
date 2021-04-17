@@ -50,3 +50,32 @@ public static void main(String[] args) {
              ex.setVisible(true);
         });
 }
+``` menuController ``` - for menu buttons and other buttons.\
+```implements MouseListener, MouseMotionListener``` - mouse support.\
+```mouseMoved``` - follows the position of the mouse.
+```java
+@Override
+public void mouseMoved(MouseEvent e) {
+          Board.mouseX = e.getX();
+          Board.mouseY = e.getY();
+}
+```
+mousePressed - the user did a mouse click, then the variables for some modes are true.\
+mouseReleased - the user released the mouse, then the variables - false.
+```java
+@Override
+public void mousePressed(MouseEvent arg0) {
+        menuView.click = true;
+        linearView.click_l = true;
+        powView.click_p = true;
+        mixingView.click_m = true;
+}
+@Override
+public void mouseReleased(MouseEvent arg0) {
+        menuView.click = false;
+        linearView.click_l = false;
+        powView.click_p = false;
+        mixingView.click_m = false;
+}
+```
+### 2) Model
