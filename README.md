@@ -350,3 +350,361 @@ if(valueOfPow < 0 || valueOfPow > 10) {
 powModel.potega(valueOfPow);
 ```
 ### ```mixingModel class``` - logic of the blend processing images. ( 16 modes )
+method openPicture() by analogy with linearModel, powModel class, but in this case I invoke this method twice, because I need two images.\
+For that I make two String variables in Board model.
+```java
+private static String path1 = "";
+private static String path2 = "";
+```
+Make two buttons for load images path in Board model (pasteButton - method).
+```java
+...
+// mixing open image 1
+if(e.equals(mix.mainButtons[0])) {
+	e.color1 = color_change;
+	if (mixingView.click_m) {
+		mixingModel.openPicture();
+		path1 = mixingModel.getPicturePath();
+		mixingView.click_m = false;
+	}
+}
+// mixing open image 2
+if(e.equals(mix.mainButtons[1])) {
+	e.color1 = color_change;
+	if (mixingView.click_m) {
+		mixingModel.openPicture();
+		path2 = mixingModel.getPicturePath();
+		mixingView.click_m = false;
+	}
+}
+...
+```
+The main method ```chooseMode(String mode)``` - by analogy with linear, power models, but with difference.\
+Variable mode decides what formula the application would use.(switch)\
+1. Additive mode
+```java
+switch(state) {
+	case "add":
+	 	x = red1+red2;
+	 	y = green1+green2;
+	 	z = blue1+blue2;
+
+		if (x>255) {
+			x=255;
+		}else if (x < 0){
+			x=0;
+		}
+		if (y>255) {
+			y=255;
+		}else if (y < 0){
+			y=0;
+		}
+		if (z>255) {
+			z=255;
+		}else if (z < 0){
+			z=0;
+		}
+		break;
+		...
+```
+2. Subtractive mode - divide by 255 and multiply if the value is not less than zero.
+```java
+case "sub": 
+	 x = red1/255+red2/255-1;
+	 y = green1/255+green2/255-1;
+	 z = blue1/255+blue2/255-1;
+								 
+	 if (x < 0) {
+		 x = 0;
+	 }else{
+		 x = x*255;
+	 }
+	 if (y < 0) {
+		 y = 0;
+	 }else{
+		 y = y*255;
+	 }
+	 if (z < 0) {
+		 z = 0;
+	 }else{
+		 z = z*255;
+	 }
+	break;
+```
+3. Difference mode
+```java
+case "roz":
+	 x = Math.abs(red1-red2);
+	 y = Math.abs(green1-green2);
+	 z = Math.abs(blue1-blue2);
+								 
+	 if (x>255) {
+		 x=255;
+	 }else if (x < 0){
+		 x=0;
+	 }
+	 if (y>255) {
+		 y=255;
+	 }else if (y < 0){
+		 y=0;
+	 }
+	 if (z>255) {
+		 z=255;
+	 }else if (z < 0){
+		 z=0;
+	 }
+
+	break;
+```
+4. Multiply mode - divide by 255, because of multiply.
+```java
+case "mn":
+	 x = (red1*red2)/255;
+	 y = (green1*green2)/255;
+	 z = (blue1*blue2)/255;
+								 
+	 if (x>255) {
+		 x=255;
+	 }else if (x < 0){
+		 x=0;
+	 }
+	 if (y>255) {
+		 y=255;
+	 }else if (y < 0){
+		 y=0;
+	 }
+	 if (z>255) {
+		 z=255;
+	 }else if (z < 0){
+		 z=0;
+	 }
+
+	break;
+```
+5.  Screen mode - divide by 255 and multiply by 255.
+```java
+case "screen":
+	 x = (1 - (1 -red1/255)*(1-red2/255))*255;
+	 y = (1 - (1 -green1/255)*(1-green2/255))*255;
+	 z = (1 - (1 -blue1/255)*(1-blue2/255))*255;
+								 
+	 if(x > 255) {
+		 x = 255;
+	 }else if (x < 0) {
+		 x=0;
+	 }
+	 if(y > 255) {
+		 y = 255;
+	 }else  if (y < 0) {
+		 y=0;
+
+	 }
+	 if(z > 255) {
+		 z = 255;
+	 }else if (z < 0) {
+		 z=0;
+
+	 }
+
+	break;
+```
+6. Negation mode -  divide by 255 and multiply if the value is not larger than 255.
+```java
+case "negation": 
+	 x = 1 - Math.abs(1 - red1/255 - red2/255);
+	 y = 1 - Math.abs(1 - green1/255 - green2/255);
+	 z = 1 - Math.abs(1 - blue1/255 - blue2/255);
+	 
+	 if(x*255 > 255) {
+		 x = 255;
+	 }else {
+		 x = x * 255;
+	 }
+	 if(y*255 > 255) {
+		 y = 255;
+	 }else {
+		 y = y * 255;
+	 }
+	 if(z*255 > 255) {
+		 z = 255;
+	 }else {
+		 z = z * 255;
+	 }
+	break;
+```
+7. Darken mode (and 8. Lighten mode by anology, but another sign in if statement).
+```java
+case "darken":
+	if(red1 < red2) {
+		x = red1;
+	}else {
+		x = red2;
+	}
+	if(green1 < green2) {
+		y = green1;
+	}else {
+		y = green2;
+	}
+	if(blue1 < blue2) {
+		z = blue1;
+	}else {
+		z = blue2;
+	}
+						 		
+	if (x>255) {
+		 x=255;
+	 }else if (x < 0){
+		 x=0;
+	 }
+	 if (y>255) {
+		 y=255;
+	 }else if (y < 0){
+		 y=0;
+	 }
+	 if (z>255) {
+		 z=255;
+	 }else if (z < 0){
+		 z=0;
+	 }
+
+	break;
+```
+9. Exclusion mode - divide by 255, because of multiply.
+```java
+case "exclusion":
+	 x = red1 + red2 - (2*red1*red2)/255;
+	 y = green1 + green2 - (2*green1*green2)/255;
+	 z = blue1 + blue2 - (2*blue1*blue2)/255;
+		 
+	 if (x>255) {
+		 x=255;
+	 }else if (x < 0){
+		 x=0;
+	 }
+	 if (y>255) {
+		 y=255;
+	 }else if (y < 0){
+		 y=0;
+	 }
+	 if (z>255) {
+		 z=255;
+	 }else if (z < 0){
+		 z=0;
+	 }
+
+	 break;
+```
+10. Hard light mode - !divide by 255! and multiply if the value is not larger than 255.( 11.Soft light by anology, but another formula and sign in if statement)
+```java
+case "overlay":
+	if (red1 / 255 < 0.5) {
+		 x = 2 * red1 / 255 * red2 / 255;
+	} else {
+		x = 1 - 2 * (1 - red1 / 255) * (1 - red2 / 255);
+	}
+	if (green1 / 255 < 0.5) {
+		 y = 2 * green1 / 255 * green2 / 255;
+	} else {
+		 y = 1 - 2 * (1 - green1 / 255) * (1 - green2 / 255);
+	}
+	if (blue1 / 255 < 0.5) {
+		z = 2 * blue1 / 255 * blue2 / 255;
+	} else {
+		z = 1 - 2 * (1 - blue1 / 255) * (1 - blue2 / 255);
+	}
+			                    
+	if (x * 255 > 255) {
+		x = 255;
+	} else {
+		x = x * 255;
+	}
+	if (y * 255 > 255) {
+		y = 255;
+	} else {
+		y = y * 255;
+	}
+	if (z * 255 > 255) {
+		z = 255;
+	} else {
+		z = z * 255;
+	}
+	break;
+```
+12. Color dodge mode - divide by 255 and multiply if the value is not less than zero.\
+13. Color burn mode by anology with 12, but another formula.\
+14. Reflect mode by anology with 12, but another formula.\
+```java
+case "c_dodge":
+	x = ((red1/255) /(1-red2/255));
+	y = ((green1/255) / (1-green2/255));
+	z = ((blue1/255) / (1-blue2/255));
+
+	 if (x < 0) {
+		 x = 0;
+	 }else{
+		 x = x*255;
+		 if (x > 255) {
+			 x = 255;
+		 }
+	 }
+	 if (y < 0) {
+		 y = 0;
+	 }else{
+		 y = y*255;
+		 if (y > 255) {
+			 y = 255;
+		 }
+	 }
+	 if (z < 0) {
+		 z = 0;
+	 }else{
+		 z = z*255;
+		 if (z > 255) {
+			 z = 255;
+		 }
+	 }
+	break;
+
+```
+15. Transparency, Opacity - value of valiable alpha from the user, divide by 255 and multiply if the value is not larger than 255
+```java
+case "opacity":
+	double alpha = questionFormPowModel.getValueOfPow();
+	x = (1 - alpha)*(red2/255) + alpha*(red1/255);
+	y = (1 - alpha)*(green2/255) + alpha*(green1/255);
+	z = (1 - alpha)*(blue2/255) + alpha*(blue1/255);
+
+	if (x * 255 > 255) {
+	    x = 255;
+	} else {
+	    x = x * 255;
+	}
+	if (y * 255 > 255) {
+	    y = 255;
+	} else {
+	    y = y * 255;
+	}
+	if (z * 255 > 255) {
+	     z = 255;
+	} else {
+	     z = z * 255;
+	}
+
+	break;
+```
+```questionFormPowModel class``` method frame_op() - for variable alpha.\
+It is written analogously to the frame() method, but with a different range of allowed values. [0,1]\
+Variable mode decides under what name we write the processed image.
+```java
+ switch(state) {
+	case "add":
+		File ouptut = new File(picturePath.replace(".jpg", "_additive.jpg"));
+		ImageIO.write(image1, "jpg", ouptut);
+		break;
+	case "sub":
+		ouptut = new File(picturePath.replace(".jpg", "_subst.jpg"));
+		ImageIO.write(image1, "jpg", ouptut);
+		break;
+	...
+```
+### 3) View
