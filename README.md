@@ -147,3 +147,31 @@ public void actionPerformed(ActionEvent arg0) {
 		}
 	}
 ```
+```linearModel class``` - logic of the linear processing images. \
+Variables:
+```java
+private static String picturePath ="";
+static BufferedImage image;
+static int width;
+static int height;
+static JFrame f;
+```
+Method ```openPicture()``` - to open the image.\
+1. New object JFileChooser with Home Directory.\
+2. The name of the new window.\
+3. Do not allow the user to select any file except .jpg
+```java
+JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+jfc.setDialogTitle("Select an image");
+jfc.setAcceptAllFileFilterUsed(false);
+FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG images", "jpg");
+jfc.addChoosableFileFilter(filter);
+```
+Save the selected path to a variable picturePath.
+```java
+int returnValue = jfc.showOpenDialog(null);
+if (returnValue == JFileChooser.APPROVE_OPTION) {
+            picturePath = jfc.getSelectedFile().getPath();
+            System.out.println(jfc.getSelectedFile().getPath());
+}
+```
