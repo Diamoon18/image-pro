@@ -18,8 +18,8 @@ Controller - interaction with the user.
 
 ## Code explanation
 ### 1) Controller
-```Application``` - this is the entry point of the game. Here we have the main method. \
-The Board is a panel where the game takes place.\
+```Application class``` - this is the entry point of the application. Here we have the main method. \
+The Board is a panel where the application takes place.\
 Here we put the Board to the center of the JFrame container. 
 ```java   
 add(new Board());
@@ -33,7 +33,6 @@ setSize(WIDTH, HEIGHT);
 setTitle("IMAGE~PRO");
 setIconImage(imagesLoad.icon.getImage());
 
-setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 setResizable(false);
 ```
 This ```setDefaultCloseOperation``` will close the application when we click on the close button. \
