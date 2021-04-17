@@ -55,8 +55,7 @@ public class mixingModel {
  
 				 File input2 = new File(Board.getPath2());
 				 image2 = ImageIO.read(input2);
-				 width = image2.getWidth();
-				 height = image2.getHeight();
+				 
 				 
 				 for(int i = 0; i < height; i++){
 					 for(int j = 0; j < width; j++){
