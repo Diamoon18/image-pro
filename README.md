@@ -707,6 +707,6 @@ Variable mode decides under what name we write the processed image.
 		break;
 	...
 ```
-The results of these 16 modes are located in the Results folder.\
+The results of these 16 modes are located in the Results folder.
 ### 3) View - drawing app.
 
