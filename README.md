@@ -630,9 +630,9 @@ case "overlay":
 	}
 	break;
 ```
-12. Color dodge mode - divide by 255 and multiply if the value is not less than zero.\
-13. Color burn mode by anology with 12, but another formula.\
-14. Reflect mode by anology with 12, but another formula.\
+12. Color dodge mode - divide by 255 and multiply if the value is not less than zero.
+13. Color burn mode by anology with 12, but another formula.
+14. Reflect mode by anology with 12, but another formula.
 ```java
 case "c_dodge":
 	x = ((red1/255) /(1-red2/255));
@@ -707,4 +707,6 @@ Variable mode decides under what name we write the processed image.
 		break;
 	...
 ```
-### 3) View
+The results of these 16 modes are located in the Results folder.\
+### 3) View - drawing app.
+
