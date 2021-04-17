@@ -177,7 +177,7 @@ if (returnValue == JFileChooser.APPROVE_OPTION) {
 ```
 Method ```negative()``` - to open the image.\
 Load (open) an image.\
-Take picture sizes.\
+Take picture sizes.
 ```java
 File input = new File(picturePath);
 image = ImageIO.read(input);
@@ -243,7 +243,7 @@ if (z>255) {
  ...
 ```
 ``` questionFormModel class implements ChangeListener ``` - window for slider, user selects value of the variable. \
-ChangeListener - track Slider value change.\
+ChangeListener - track Slider value change.
 ```java
 @Override
 public void stateChanged(ChangeEvent e) {
@@ -273,7 +273,7 @@ questionFormModel qm = new questionFormModel();
 JPanel p = new JPanel();
 ```
 Depending on the mode, we set title of the window, print the information(text) in the window.\
-setInverted(true) - reverse the order.\
+setInverted(true) - reverse the order.
 ```java
 if(stan.equals("dark")) {
 	b.setInverted(true);
@@ -285,7 +285,7 @@ if(stan.equals("dark")) {
 } 
 ```
 Button to confirm the selected value from Slider.\
-Depending on the mode, invoke the appropriate method.\
+Depending on the mode, invoke the appropriate method.
 ```java
 jb.setBounds(150, 10, 95, 30);
 jb.addActionListener(new ActionListener() {
@@ -304,3 +304,35 @@ jb.addActionListener(new ActionListener() {
 });
 ```
 ### ```powModel class``` - logic of the power processing images.
+By anology with linearModel class, but another formula.\
+```java
+double potega = valueOfB;
+double x, y, z;
+x = 0;
+y = 0;
+z = 0;
+						 
+x = (255 * Math.pow(red/255, potega));
+y = (255 * Math.pow(green/255, potega));
+z = (255 * Math.pow(blue/255, potega));
+```
+```questionFormPowModel class``` - window(InputDialog) for select value of the variable potega (b).
+Main method ```frame()```\
+Protection against entering an incorrect value of variable input.\
+If value is incorrect, input set 1.\
+Invoke the ```potega(valueOfPow)```.
+```java
+String input = "1";
+input = JOptionPane.showInputDialog( "Value of pow [0,10]:");
+if(input == null || input.isEmpty() || !input.matches("([0-9]*[.])?[0-9]+")) {
+	input = "1";
+	JOptionPane.showMessageDialog(f,"Error input, default input 1");
+}
+valueOfPow = Double.parseDouble(input);
+if(valueOfPow < 0 || valueOfPow > 10) {
+	valueOfPow = 1;
+	JOptionPane.showMessageDialog(f,"Error input, default input 1");
+}
+powModel.potega(valueOfPow);
+```
+### ```mixingModel class``` - logic of the blend processing images. ( 16 modes )
