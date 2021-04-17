@@ -156,9 +156,9 @@ static int width;
 static int height;
 static JFrame f;
 ```
-Method ```openPicture()``` - to open the image.\
-1. New object JFileChooser with Home Directory.\
-2. The name of the new window.\
+Method ```openPicture()``` - to open the image.
+1. New object JFileChooser with Home Directory.
+2. The name of the new window.
 3. Do not allow the user to select any file except .jpg
 ```java
 JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
