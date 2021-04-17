@@ -17,3 +17,36 @@ Controller - interaction with the user.
 ![image](https://user-images.githubusercontent.com/72127610/115123210-4c6fde80-9fbc-11eb-9f5a-63fc7db69102.png)
 
 ## Code explanation
+### 1) Controller
+```Application``` - this is the entry point of the game. Here we have the main method. \
+The Board is a panel where the game takes place.\
+Here we put the Board to the center of the JFrame container. 
+```java   
+add(new Board());
+```
+This line sets the size of the window.\
+Also set the name of the application.\
+Add an icon. \
+I have not set up the ability to change the size of the application. 
+```java   
+setSize(WIDTH, HEIGHT); 
+setTitle("IMAGE~PRO");
+setIconImage(imagesLoad.icon.getImage());
+
+setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+setResizable(false);
+```
+This ```setDefaultCloseOperation``` will close the application when we click on the close button. \
+Passing null to the setLocationRelativeTo() method centers the window on the screen.
+``` java
+setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+setLocationRelativeTo(null);
+```
+We create an instance of our code example and make it visible on the screen. 
+```java
+public static void main(String[] args) {
+        EventQueue.invokeLater(() -> {
+             Application ex = new Application();
+             ex.setVisible(true);
+        });
+}
