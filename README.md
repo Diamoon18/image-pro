@@ -175,3 +175,47 @@ if (returnValue == JFileChooser.APPROVE_OPTION) {
             System.out.println(jfc.getSelectedFile().getPath());
 }
 ```
+Method ```negative()``` - to open the image.\
+Load (open) an image.\
+Take picture sizes.\
+```java
+File input = new File(picturePath);
+image = ImageIO.read(input);
+width = image.getWidth();
+height = image.getHeight();
+```
+Looping over successive pixels in the image.\
+Get the RGB values.\
+Write the formula for processing (negation mode).\
+Set new RGB values for the image.\
+And save new image in folder.\
+Appears a window that indicates a successful operation.
+```java
+for(int i = 0; i < height; i++){
+     for(int j = 0; j < width; j++){
+	 Color c = new Color(image.getRGB(j, i));
+	 int red = (int)(c.getRed());
+	 int green = (int)(c.getGreen());
+	 int blue = (int)(c.getBlue());
+						 
+	 int a = -1;
+	 int b = 255;
+	 int x, y, z;
+	 x = 0;
+	 y = 0;
+	 z = 0;
+						 
+	 x = a*red+b;
+	 y = a*green+b;
+	 z = a*blue+b;
+
+	 Color newColor = new Color(x, y, z);
+	 image.setRGB(j,i,newColor.getRGB());
+	}
+      }
+ File ouptut = new File(picturePath.replace(".jpg", "_negative.jpg"));
+ ImageIO.write(image, "jpg", ouptut);
+ f = new JFrame();
+ JOptionPane.showMessageDialog(f, "Success!");
+}
+```
