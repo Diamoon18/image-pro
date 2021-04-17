@@ -246,6 +246,11 @@ if (z>255) {
  }
  ...
 ```
+Result of the light mode:
+![hand_light](https://user-images.githubusercontent.com/72127610/115128178-37a34300-9fdc-11eb-986f-eb8dd1a4554d.jpg)
+Result of the dark mode:
+![hand_dark](https://user-images.githubusercontent.com/72127610/115128174-340fbc00-9fdc-11eb-97c6-dcfbeac82684.jpg)
+
 ``` questionFormModel class implements ChangeListener ``` - window for slider, user selects value of the variable. \
 ChangeListener - track Slider value change.
 ```java
@@ -320,6 +325,11 @@ x = (255 * Math.pow(red/255, potega));
 y = (255 * Math.pow(green/255, potega));
 z = (255 * Math.pow(blue/255, potega));
 ```
+Original image:
+![magic](https://user-images.githubusercontent.com/72127610/115128214-75a06700-9fdc-11eb-8cf5-a6ab455b4cb9.jpg)
+Result of the power mode:
+![magic_potega](https://user-images.githubusercontent.com/72127610/115128219-7afdb180-9fdc-11eb-9c11-8f2682a37d2b.jpg)
+
 ```questionFormPowModel class``` - window(InputDialog) for select value of the variable potega (b).
 Main method ```frame()```\
 Protection against entering an incorrect value of variable input.\
