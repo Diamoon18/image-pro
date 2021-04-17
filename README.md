@@ -80,10 +80,10 @@ public void mouseReleased(MouseEvent arg0) {
 ### 2) Model
 ```Board enum``` - for easy application development.\
 There are application states:\
-1.MENU,
-2.LINEAR,
-3.POW,
-4.MIXING
+1.MENU,\
+2.LINEAR,\
+3.POW,\
+4.MIXING\
 ```Board model``` - here is the main logic of the game.\
 Three main functions:
 ```draw()``` - draws the application on the screen.
