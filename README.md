@@ -1,5 +1,8 @@
 # Image processing application in Java
-
+An application based on the model, view, controller structure.\
+Model - application logic.\
+View - drawing application objects.\
+Controller - interaction with the user.
 ## Screenshots
 ![image](https://user-images.githubusercontent.com/72127610/115123166-277b6b80-9fbc-11eb-8150-61464be19e00.png)
 ### Add image
