@@ -219,6 +219,10 @@ for(int i = 0; i < height; i++){
  JOptionPane.showMessageDialog(f, "Success!");
 }
 ```
+Original image:
+![hand](https://user-images.githubusercontent.com/72127610/115128104-c3689f80-9fdb-11eb-894f-12742f37cddb.jpg)
+Result of the negative mode:
+![hand_negative](https://user-images.githubusercontent.com/72127610/115128096-b21f9300-9fdb-11eb-83fe-dd43d51bba47.jpg)
 Methods  light(int valueOfB) and dark(valueOfB) by analogy, but with protection against going out of range.\
 Also value of the b loaded with a slider(user can change value).
 ```java
