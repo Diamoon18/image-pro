@@ -709,4 +709,51 @@ Variable mode decides under what name we write the processed image.
 ```
 The results of these 16 modes are located in the Results folder.
 ### 3) View - drawing app.
-
+```imagesLoad class``` - loading images for the application.
+```menuView class``` - draw menu, main method ```draw()```
+New object of Graphics2D.
+```java 
+Graphics2D g2d = (Graphics2D) g;
+```
+Set the background colour of the app.
+```java
+g2d.setColor(new Color(154, 154, 210));
+g2d.fillRect(0, 0, Application.WIDTH, Application.HEIGHT);
+```
+Make an inscription on the menu page.
+```java
+Font font = new Font("Didot",Font.BOLD, 40);
+g2d.setFont(font);
+g2d.setColor(new Color(221,238,229));
+g2d.drawString("IMAGE", 60, 150);
+g2d.drawString("PROCESSING", 60, 200);
+```
+Draw buttons, and a line at the bottom of the app.
+```java
+for (Button i :menuButtons) {
+	i.setSizeF(35);
+	i.draw(g2d);
+}
+g2d.setColor(new Color(221,238,229));
+g2d.fillRect(0, 440, 400, 1);
+```
+```linearView class```, ```powView class``` by analogy, but with some differences.\
+The word Okay appears above the openPicture Button, when the user selects an image.
+``` java
+if (!linearModel.getPicturePath().isEmpty()) {
+	Font font = new Font("Didot",Font.BOLD, 20);
+	g2d.setFont(font);
+	g2d.setColor(new Color(221,238,229));
+	g2d.drawString("Okej", 270, 70);
+}
+```
+```mixingView class``` by analogy, but with some differences.\
+Draw blend buttons only if the user selects two pictures.
+```java
+if (!Board.getPath1().isEmpty() && !Board.getPath2().isEmpty()) {
+	for (Button i :mixingButtons) {
+		i.setSizeF(17);
+		i.draw(g2d);
+	}
+}
+```
