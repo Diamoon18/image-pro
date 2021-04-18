@@ -313,7 +313,7 @@ jb.addActionListener(new ActionListener() {
 });
 ```
 ### ```powModel class``` - logic of the power processing images.
-By anology with linearModel class, but another formula.\
+By anology with linearModel class, but another formula.
 ```java
 double potega = valueOfB;
 double x, y, z;
