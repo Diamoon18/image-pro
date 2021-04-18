@@ -50,13 +50,7 @@ public class mixingView {
 		
         g2d.drawImage(imagesLoad.img3, 40, 10, null);
         g2d.drawImage(imagesLoad.img3, 240, 50, null);
-        /*if (!linearModel.getPicturePath().isEmpty()) { // tutaj
-        	Font font = new Font("Didot",Font.BOLD, 20);
-    		g2d.setFont(font);
-    		g2d.setColor(new Color(221,238,229));
-    		g2d.drawString("Okej", 270, 70);
-		}*/
-       
+        
         g2d.setColor(new Color(221,238,229));
 		g2d.fillRect(0, 430, 400, 1);
 		
