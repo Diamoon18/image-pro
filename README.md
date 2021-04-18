@@ -49,7 +49,8 @@ public static void main(String[] args) {
              ex.setVisible(true);
         });
 }
-``` menuController ``` - for menu buttons and other buttons.\
+``` 
+```menuController ``` - for menu buttons and other buttons.\
 ```implements MouseListener, MouseMotionListener``` - mouse support.\
 ```mouseMoved``` - follows the position of the mouse.
 ```java
