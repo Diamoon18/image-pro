@@ -594,7 +594,8 @@ case "exclusion":
 
 	 break;
 ```
-10. Hard light mode - !divide by 255! and multiply if the value is not larger than 255.( 11.Soft light by anology, but another formula and sign in if statement)
+10. Overlay mode - !divide by 255! and multiply if the value is not larger than 255.\
+(11. Hard light and 12.Soft light by anology, but another formula and sign in if statement)
 ```java
 case "overlay":
 	if (red1 / 255 < 0.5) {
@@ -630,9 +631,9 @@ case "overlay":
 	}
 	break;
 ```
-12. Color dodge mode - divide by 255 and multiply if the value is not less than zero.
-13. Color burn mode by anology with 12, but another formula.
-14. Reflect mode by anology with 12, but another formula.
+13. Color dodge mode - divide by 255 and multiply if the value is not less than zero.
+14. Color burn mode by anology with 12, but another formula.
+15. Reflect mode by anology with 12, but another formula.
 ```java
 case "c_dodge":
 	x = ((red1/255) /(1-red2/255));
@@ -666,7 +667,7 @@ case "c_dodge":
 	break;
 
 ```
-15. Transparency, Opacity - value of valiable alpha from the user, divide by 255 and multiply if the value is not larger than 255
+16. Transparency, Opacity - value of valiable alpha from the user, divide by 255 and multiply if the value is not larger than 255
 ```java
 case "opacity":
 	double alpha = questionFormPowModel.getValueOfPow();
