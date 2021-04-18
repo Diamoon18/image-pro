@@ -1,4 +1,4 @@
-# Image processing application in Java
+# Image processing - application in Java
 An application based on the model, view, controller structure.\
 Model - application logic.\
 View - drawing application objects.\
