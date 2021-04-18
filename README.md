@@ -267,7 +267,7 @@ public void stateChanged(ChangeEvent e) {
 Main Method ```frame(int start, int end, int interval, String mode)```\
 start - beginning of interval for slider.\
 end - beginning of interval for slider.\
-mode - a short description of the method to distinguish the windows (create egative Slider).\
+mode - a short description of the method to distinguish the windows (create negative Slider).\
 For dark mode we should have the negative Slider, that is why I did this.
 ```java
 if(stan.equals("dark")) {
@@ -381,7 +381,7 @@ if(e.equals(mix.mainButtons[1])) {
 ...
 ```
 The main method ```chooseMode(String mode)``` - by analogy with linear, power models, but with difference.\
-Variable mode decides what formula the application would use.(switch)\
+Variable mode decides what formula the application would use.(switch)
 1. Additive mode
 ```java
 switch(state) {
@@ -633,8 +633,8 @@ case "overlay":
 	break;
 ```
 13. Color dodge mode - divide by 255 and multiply if the value is not less than zero.
-14. Color burn mode by anology with 12, but another formula.
-15. Reflect mode by anology with 12, but another formula.
+(14. Color burn mode by anology with 13, but another formula.)
+(15. Reflect mode by anology with 13, but another formula.)
 ```java
 case "c_dodge":
 	x = ((red1/255) /(1-red2/255));
